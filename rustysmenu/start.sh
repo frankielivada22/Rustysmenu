@@ -77,6 +77,7 @@ echo "starting..."
 sleep 2
 cd wifi
 bash wifi.sh
+cd ..
 
 fi
 if [[ $player1 == "2" ]]; then
@@ -84,12 +85,14 @@ echo "starting..."
 sleep 2
 cd discord
 bash discord.sh tokens.txt
+cd ..
 fi
 if [[ $player1 == "3" ]]; then
 echo "starting..."
 sleep 2
 cd metasploit
 bash rustypayload.sh
+cd ..
 fi
 if [[ $player1 == "e" ]]; then
 echo -e $lgreen"Bye!"

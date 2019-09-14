@@ -154,6 +154,7 @@ echo ""
     fi
     if [[ $menu1 == "0" ]]; then
         echo "Exiting..."
+        cd ..
         exit 1
     fi
 done

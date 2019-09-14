@@ -187,6 +187,7 @@ echo -e $lred""
 read -p "Press enter to exit..."
 fi
 if [[ $player1 == "b" ]]; then
+cd ..
 exit 0
 fi
 
