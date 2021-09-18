@@ -64,7 +64,7 @@ cat << "EOF"
 EOF
 
 clear
-echo -e $lred"coding by (ANK1036Official) idea by (rustywolf021)"
+echo -e $lred"coding by (ANK1036Official) idea by ()"
 echo ""
 echo "If you dont make a file in the discord folder called tokens.txt"
 echo "Put your discord token(s) in here"
